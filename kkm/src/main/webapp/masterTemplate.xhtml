@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Sport Body</title>
+                
+                <link type="text/css"
+              href="${facesContext.externalContext.requestContextPath}/resources/css/tableStyle.css"
+              rel="stylesheet" />
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="93">
+                    <h:form>  
+                        <p:growl id="messages" life="2000"/>
+                        <p:menubar>
+                            <p:menuitem>
+                                <h:link outcome="/private/management.xhtml?faces-redirect=true">
+                                    <h:graphicImage value="/resources/images/Logo_Final.png" height="45"/>
+                                </h:link>
+                            </p:menuitem>
+                            
+                            <p:menuitem value="Benutzer hinzufügen" url="/private/addUser.xhtml" icon="ui-icon-document" class="nothStyle" rendered="#{viewUsers.checkUserRole()}"/>
+                            <p:menuitem value="Benutzer bearbeiten" url="/private/editUser.xhtml" icon="ui-icon-pencil" class="nothStyle" rendered="#{viewUsers.checkUserRole()}" />
+                            <f:facet name="options">
+                                <p:commandButton value="Ausloggen" icon="ui-icon-extlink" style="width: auto;" action="#{web.logout}" id="logoutButton"/>
+                            </f:facet>
+                        </p:menubar>
+
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="80" closable="false" collapsible="false" style="display: block; margin: 0px auto;">
+                    <div align ="center">
+                        <!--Build with Love &#x2764; and Coffee &#x2615; during BAM - SPM WS 2017/2018 - powered by:-->
+                        <br></br>
+                        <!--Ramona Buser-->
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="235" header="Menu" resizable="false" closable="false" collapsible="false" id="layoutUnit">
+                    <p:menu toggleable="true">
+
+                        <p:submenu label="Flashcard">
+                            <p:menuitem value="add Card" outcome="/addCard.xhtml" id="addCardView"/>
+                            <p:menuitem value="edit Card" outcome="/editUserProfil.xhtml" id="editCardView"/>
+                            <p:menuitem value="delete Card" outcome="/editUserProfil.xhtml" id="delCardView"/>
+                        </p:submenu>
+                        <p:submenu label="Community">
+                            <p:menuitem value="Forum - Offline" outcome="/editUserProfil.xhtml" id="enterForumView"/>
+                            <p:menuitem value="Marketplace - Offline" outcome="/editUserProfil.xhtml" id="enterMarketplaceView"/>
+                        </p:submenu>
+                        <p:submenu label="My Profile">
+                            <p:menuitem value="Show/Edit" outcome="/editUserProfil.xhtml" id="subProfilView"/>
+                        </p:submenu>
+
+                    </p:menu>
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <ui:insert name="content"></ui:insert>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -1,0 +1,16 @@
+.loginForm{
+    position:relative;
+    height: 100px;
+    margin:0 auto;
+    padding: 10% 0;
+}
+
+.panel{
+    width: 500px; 
+    margin: 0 auto;
+}
+
+.image{
+   display: block; 
+   margin: auto; 
+}

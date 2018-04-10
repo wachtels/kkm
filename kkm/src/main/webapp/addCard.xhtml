@@ -1,0 +1,62 @@
+<ui:composition template="/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <f:metadata>
+        <!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
+        <p:separator style="border-color: #ffffff; "/>
+        <h:form id="currentUserForm">
+
+            <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
+            <p:separator />
+            <p:growl id="editUserFormMessages"/>
+
+            <h:form id="passwordForm">          
+                <p:growl id="passwordMsg" showDetail="true" life="4000" />
+                <pm:field>
+                    <p:outputLabel></p:outputLabel>
+                    <p:inputText></p:inputText>
+                </pm:field>
+                <p:panel header="Create Card" style="width: 360px;">
+
+                    <h:panelGrid id="passwordPanel" columns="2" cellpadding="5">
+
+                        <h:outputText value="Topic: " style="width: auto;"/>
+                        <h:inputText id="Topic" value="#{web.password}"></h:inputText>
+                        <p:spacer></p:spacer>
+                        <p:message for="Topic" ></p:message>
+
+                        <h:outputText value="Front: " style="width: auto;"/>
+                        <h:inputText id="Front" value="#{web.password2}"></h:inputText>
+                        <p:spacer></p:spacer>
+                        <p:message for="Front"></p:message>
+                        
+                        <h:outputText value="Back: " style="width: auto;"/>
+                        <h:inputText id="Back" value="#{web.password2}"></h:inputText>
+                        <p:spacer></p:spacer>
+                        <p:message for="Back"></p:message>
+
+                        <p:spacer></p:spacer>
+
+                        <p:panelGrid columns="2"  style="border-style: hidden">
+                            <p:row>
+                                <p:commandButton actionListener="#{web.changePassword()}" action="/addCard?faces-redirect=true"
+                                                 value="createCard" update="passwordForm" 
+                                                 ajax="true" style="float:left;"/>
+                            </p:row>
+                        </p:panelGrid>
+                    </h:panelGrid>   
+                </p:panel>
+            </h:form>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

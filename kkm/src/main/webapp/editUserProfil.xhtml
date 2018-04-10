@@ -1,0 +1,152 @@
+<ui:composition template="/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputText value="Benutzer bearbeiten" style="font-size: x-large" /> 
+        <p:separator style="border-color: #ffffff; "/>
+        <h:form id="currentUserForm">
+
+            <p:button value="Aktualisieren" outcome="/editUserProfil.xhtml" icon="ui-icon-refresh"/>
+            <p:separator />
+            <p:growl id="editUserFormMessages"/>
+
+            <p:dataTable  id="datatable"
+                          paginatorAlwaysVisible="true"
+                          paginator="true"
+
+                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                          rowsPerPageTemplate="10,25,50"
+                          rows="10" 
+                          editable="true"
+                          editMode="row"
+                          value="#{viewUsers.userModel.datasource}"
+                          var="user" lazy="true"
+                          tableStyle="width:auto"
+                          class="table"
+                          >
+
+                <p:ajax event="rowEdit" listener="#{viewUsers.rowEditAction}" update=":currentUserForm:editUserFormMessages" /> 
+
+                <p:column id="userName" headerText="Benutzer">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.username}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="userNameInput" value="#{user.username}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>       
+
+                <p:column id="firstName" headerText="Vorname">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.firstName}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="firstNameInput" value="#{user.firstName}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+
+                <p:column id="LastName" headerText="Nachname">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.lastName}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="lastNameInput" value="#{user.lastName}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column id="Kg" headerText="Gewicht">
+                    <h:outputText value="#{web.kg()}" />
+                </p:column>
+
+                <p:column id="Height" headerText="Größe in cm">
+                    <h:outputText value="#{user.heightInCm}" />
+                </p:column>
+
+                <p:column id="EmailAddress" headerText="Email Adresse">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.email}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="emailAddressInput" value="#{user.email}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Bearbeiten">
+                    <p:rowEditor/>
+                </p:column>    
+
+            </p:dataTable>    
+
+            <p:separator/>
+
+            <h:form id="passwordForm">          
+                <p:growl id="passwordMsg" showDetail="true" life="4000" />
+                <p:panel header="Passwort ändern" style="width: 360px;">
+
+                    <h:panelGrid id="passwordPanel" columns="2" cellpadding="5">
+
+                        <h:outputText value="Passwort: " style="width: auto;"/>
+
+                        <p:password id="Password1" value="#{web.password}" 
+                                    ></p:password>
+
+                        <p:spacer></p:spacer>
+
+                        <p:message for="Password1" ></p:message>
+
+                        <h:outputText value="Passwort: " style="width: auto;"/>
+
+                        <p:password id="Password2" value="#{web.password2}" 
+                                    ></p:password>
+
+                        <p:spacer></p:spacer>
+
+                        <p:message for="Password2"></p:message>
+
+                        <p:spacer></p:spacer>
+
+                        <p:panelGrid columns="2"  style="border-style: hidden">
+                            <p:row>
+                                <p:commandButton actionListener="#{web.changePassword()}" action="/private/editUserProfil?faces-redirect=true"
+                                                 value="Passwort ändern" update="passwordForm" 
+                                                 ajax="true" style="float:left;"/>
+
+                            </p:row>
+                        </p:panelGrid>
+                    </h:panelGrid>   
+                </p:panel>
+
+                <p:separator/>
+
+                <p:panel header="Gewicht eintragen" style="width: 360px;">
+                    <h:panelGrid>
+                        <h:outputText value="Aktuelles Gewicht: " style="width: auto;"/>
+
+                        <h:inputText id="weightInKg" value="#{web.weightInKg}" label="Name"/>
+
+                        <p:commandButton actionListener="#{web.saveWeight}" action="/private/editUserProfil?faces-redirect=true"
+                                         value="Gewicht anpassen" 
+                                         ajax="true" style="float:left;"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
