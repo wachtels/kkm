@@ -21,26 +21,22 @@
 
             <h:form id="passwordForm">          
                 <p:growl id="passwordMsg" showDetail="true" life="4000" />
-                <pm:field>
-                    <p:outputLabel></p:outputLabel>
-                    <p:inputText></p:inputText>
-                </pm:field>
                 <p:panel header="Create Card" style="width: 360px;">
 
                     <h:panelGrid id="passwordPanel" columns="2" cellpadding="5">
 
                         <h:outputText value="Topic: " style="width: auto;"/>
-                        <h:inputText id="Topic" value="#{web.password}"></h:inputText>
+                        <h:inputText id="Topic" value="#{web.topic}"></h:inputText>
                         <p:spacer></p:spacer>
                         <p:message for="Topic" ></p:message>
 
                         <h:outputText value="Front: " style="width: auto;"/>
-                        <h:inputText id="Front" value="#{web.password2}"></h:inputText>
+                        <h:inputText id="Front" value="#{web.front}"></h:inputText>
                         <p:spacer></p:spacer>
                         <p:message for="Front"></p:message>
                         
                         <h:outputText value="Back: " style="width: auto;"/>
-                        <h:inputText id="Back" value="#{web.password2}"></h:inputText>
+                        <h:inputText id="Back" value="#{web.back}"></h:inputText>
                         <p:spacer></p:spacer>
                         <p:message for="Back"></p:message>
 
@@ -48,7 +44,7 @@
 
                         <p:panelGrid columns="2"  style="border-style: hidden">
                             <p:row>
-                                <p:commandButton actionListener="#{web.changePassword()}" action="/addCard?faces-redirect=true"
+                                <p:commandButton actionListener="#{web.saveCard()}" action="/addCard?faces-redirect=true"
                                                  value="createCard" update="passwordForm" 
                                                  ajax="true" style="float:left;"/>
                             </p:row>
