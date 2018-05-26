@@ -1,0 +1,44 @@
+<ui:composition template="/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <f:metadata>
+        <!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
+        <p:separator style="border-color: #ffffff; "/>
+        <h:form id="currentUserForm">
+
+            <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
+            <p:separator />
+            <p:growl id="editUserFormMessages"/>
+
+            <h:form id="passwordForm">          
+                <p:growl id="passwordMsg" showDetail="true" life="4000" />
+                <pm:field>
+                    <p:outputLabel></p:outputLabel>
+                    <p:inputText></p:inputText>
+                </pm:field>
+                <p:panel header="Show Cards" style="width: 360px;">
+					<h:dataTable value="#{userBean.allUsers}" var="user">
+						<h:column>
+							<f:facet name="header">Index</f:facet>
+							<h:outputText value="#{user.userId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Username</f:facet>
+							<h:outputText value="#{user.name}" />
+						</h:column>
+					</h:dataTable>
+                </p:panel>
+            </h:form>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
