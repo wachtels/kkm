@@ -13,45 +13,28 @@
     <ui:define name="content">
         <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
         <p:separator style="border-color: #ffffff; "/>
-        <h:form id="currentUserForm">
+        <h:form>
 
             <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
             <p:separator />
-            <p:growl id="editUserFormMessages"/>
 
-            <h:form id="passwordForm">          
-                <p:growl id="passwordMsg" showDetail="true" life="4000" />
+			<h:form id="addCardForm">
+				<p:growl id="passwordMsg" showDetail="true" life="4000" />
                 <p:panel header="Create Card" style="width: 360px;">
-
-                    <h:panelGrid id="passwordPanel" columns="2" cellpadding="5">
-
-                        <h:outputText value="Topic: " style="width: auto;"/>
-                        <h:inputText id="Topic" value="#{web.topic}"></h:inputText>
-                        <p:spacer></p:spacer>
-                        <p:message for="Topic" ></p:message>
-
-                        <h:outputText value="Front: " style="width: auto;"/>
-                        <h:inputText id="Front" value="#{web.front}"></h:inputText>
-                        <p:spacer></p:spacer>
-                        <p:message for="Front"></p:message>
-                        
-                        <h:outputText value="Back: " style="width: auto;"/>
-                        <h:inputText id="Back" value="#{web.back}"></h:inputText>
-                        <p:spacer></p:spacer>
-                        <p:message for="Back"></p:message>
-
-                        <p:spacer></p:spacer>
-
-                        <p:panelGrid columns="2"  style="border-style: hidden">
-                            <p:row>
-                                <p:commandButton actionListener="#{web.saveCard()}" action="/addCard?faces-redirect=true"
-                                                 value="createCard" update="passwordForm" 
-                                                 ajax="true" style="float:left;"/>
-                            </p:row>
-                        </p:panelGrid>
-                    </h:panelGrid>   
-                </p:panel>
-            </h:form>
+		    		<h:panelGrid colums="2">
+		    			<h:outputLabel value="Topic" />
+		    			<h:inputText value="#{cardBean.topic}"/>
+		    			
+		    			<h:outputLabel value="Front" />
+		    			<h:inputText value="#{cardBean.front}"/>
+		    			
+		    			<h:outputLabel value="Back" />
+		    			<h:inputText value="#{cardBean.back}"/>
+		    			
+		    			<h:commandButton value="Add Card" update="addCardForm" icon="ui-icon-check" actionListener="#{cardBean.add}" action="/addCard?faces-redirect=true"/>
+		    		</h:panelGrid>
+		    	</p:panel>
+    		</h:form>
         </h:form>
     </ui:define>
 </ui:composition>

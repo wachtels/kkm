@@ -15,6 +15,10 @@
                 <link type="text/css"
               href="${facesContext.externalContext.requestContextPath}/resources/css/tableStyle.css"
               rel="stylesheet" />
+              
+              	<link type="text/css"
+              href="${facesContext.externalContext.requestContextPath}/resources/css/flashcard.css"
+              rel="stylesheet" />
             </f:facet>
 
         </h:head>
@@ -55,6 +59,7 @@
                     <p:menu toggleable="true">
 
                         <p:submenu label="Flashcard">
+                        	<p:menuitem value="Learn Cards" outcome="/learnCard.xhtml" id="learnCardView"/>
                             <p:menuitem value="add Card" outcome="/addCard.xhtml" id="addCardView"/>
                             <p:menuitem value="edit Card" outcome="/showCard.xhtml" id="editCardView"/>
                             <p:menuitem value="delete Card" outcome="/editUserProfil.xhtml" id="delCardView"/>

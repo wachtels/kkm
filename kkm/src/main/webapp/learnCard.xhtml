@@ -1,0 +1,127 @@
+<ui:composition template="/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <f:metadata>
+        <!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+    </f:metadata>
+
+    <ui:define name="content">
+    	<!-- h:outputStylesheet name="./resources/css/flashcard.css" library="styles" target="head"/-->
+        <h:outputText value="Learn Flashcards" style="font-size: x-large" /> 
+        <p:separator style="border-color: #ffffff; "/>
+        <h:form id="currentUserForm">
+
+            <p:button value="Refresh" outcome="/learnCard.xhtml" icon="ui-icon-refresh" action="#{cardBean.init()}"/>
+            <p:separator />
+            <p:growl id="editUserFormMessages"/>
+			
+			<p:outputPanel style="display:block" class="flip-container" onclick="this.classList.toggle('hover');">
+				<p:outputPanel style="display:block" class="flipper">
+					<p:outputPanel style="display:block" class="front">
+						<h:outputText value="#{cardBean.currentCard.front}" />
+					</p:outputPanel>
+					<p:outputPanel style="display:block" class="back">
+						<h:outputText value="#{cardBean.currentCard.back}" />
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:outputPanel>
+			<h:form>
+			    <h:commandButton value="next Card" action="#{cardBean.getNextCard()}" />
+			</h:form>
+			
+            <!--h:form id="passwordForm">          
+                <p:panel header="Show Cards" style="width: 360px;">
+					<h:dataTable value="#{cardBean.allCards}" var="card">
+						<h:column>
+							<f:facet name="header">Front-Page</f:facet>
+							<h:outputText value="#{card.front}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Back-Page</f:facet>
+							<h:outputText value="#{card.back}" />
+						</h:column>
+					</h:dataTable>
+                </p:panel>
+                
+                <p:accordionPanel value="#{cardBean.allCards}" var="card" activeIndex="null">
+			        <p:tab title="#{card.front}">
+			            <h:panelGrid columns="2" cellpadding="10">
+			                <h:outputText value="#{card.back}" />
+			            </h:panelGrid>
+			        </p:tab>
+    			</p:accordionPanel>
+        </h:form-->
+        
+        <!-- h:form value="#{cardBean.allCards}" var="card">
+		<h1>#{cardSlideController.pageTitle}</h1>
+    
+		<p:messages id="messages" autoUpdate="true" closable="true" />
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Progress :" />
+			<h:outputText
+				value="#{card.priority}" />
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Card side :" />
+			<h:outputText
+				value="#{cardSlideController.cardSlideContainer.cardSide}" />
+		</h:panelGrid>
+		<h:panelGrid columns="2" rendered="#{cardSlideController.isStudyMode}">
+			<h:outputLabel value="Answer :" />
+			<h:outputText
+				value="#{cardSlideController.cardSlideContainer.cardAnswer}" />
+		</h:panelGrid>
+
+		<hr />
+
+		<p:commandButton value="Wrong" ajax="false"
+			action="#{cardSlideController.answeredWrong}"
+			rendered="#{cardSlideController.canAnswer}" />
+		<p:commandButton value="Flip" ajax="false"
+			action="#{cardSlideController.flipCard}" />
+		<p:commandButton value="Skip" ajax="false"
+			action="#{cardSlideController.skipCard}"
+			rendered="#{cardSlideController.canAnswer}" />
+		<p:commandButton value="Correct" ajax="false"
+			action="#{cardSlideController.answeredCorrect}"
+			rendered="#{cardSlideController.canAnswer}" />
+		<br />
+		<br />
+		<br />
+		<h:panelGrid columns="3"
+			columnClasses="slide-table-col-button, slide-table-col-text, slide-table-col-button">
+			<p:commandButton value="Prev" ajax="false"
+				action="#{cardSlideController.previousCard}"
+				styleClass="slide-table-button"
+				disabled="#{cardSlideController.hasNoPreviousCard}" />
+			<h:column>
+				<h:outputText
+					value="#{cardSlideController.cardSlideContainer.cardHeader}"
+					styleClass="slide-header-field" />
+				<br />
+				<h:outputText
+					value="#{cardSlideController.cardSlideContainer.cardSubheader}"
+					rendered="#{cardSlideController.cardSlideContainer.subheaderShown}"
+					styleClass="slide-subheader-field" />
+				<br />
+				<h:outputText
+					value="#{cardSlideController.cardSlideContainer.cardText}"
+					rendered="#{cardSlideController.cardSlideContainer.textShown}"
+					styleClass="slide-text-field" />
+			</h:column>
+			<p:commandButton value="Next" ajax="false"
+				action="#{cardSlideController.nextCard}"
+				styleClass="slide-table-button"
+				disabled="#{cardSlideController.hasNoNextCard}" />
+		</h:panelGrid>
+		<br /-->
+		</h:form>
+    </ui:define>
+</ui:composition>
+
