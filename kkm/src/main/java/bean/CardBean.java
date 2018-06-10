@@ -1,6 +1,7 @@
 package bean;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import javax.inject.Inject;
 import ejb.CardEJB;
 import entity.Card;
 import entity.User;
+import tools.LearnContext;
+import tools.ProgressLearnStrategy;
 
 @ApplicationScoped
 @ManagedBean
@@ -26,6 +29,9 @@ public class CardBean {
     @PostConstruct
     public void init() {
     	cardList = getAllCards();
+    	/*LearnContext ctx = new LearnContext();
+        ctx.setLearnStrategy(new ProgressLearnStrategy());
+        ctx.createArchive((ArrayList<Card>) cardList);*/
     }
 
     public List<Card> getCardList() {
