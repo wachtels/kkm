@@ -20,9 +20,19 @@
 
 			<h:form id="addCardForm">
 				<p:growl id="passwordMsg" showDetail="true" life="4000" />
+				<!--p:panel header="Select Topic" style="width: 360px;">
+		            <h:selectOneMenu value="#{cardBean.topic}">
+					    <f:selectItems value="#{cardBean.topics}" />
+					</h:selectOneMenu>
+					<h:commandButton value="Search for Topic" action="#{cardBean.getCardsFromTopic()}" />
+				</p:panel-->
                 <p:panel header="Create Card" style="width: 360px;">
 		    		<h:panelGrid colums="2">
-		    			<h:outputLabel value="Topic" />
+		    			<!-- h:outputLabel value="Select existing topic" />
+		    			<h:selectOneMenu value="#{cardBean.topic}">
+						    <f:selectItems value="#{cardBean.topics}" />
+						</h:selectOneMenu-->
+		    			<h:outputLabel value="Set own topic" />
 		    			<h:inputText value="#{cardBean.topic}"/>
 		    			
 		    			<h:outputLabel value="Front" />

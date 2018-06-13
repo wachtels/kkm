@@ -6,9 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.primefaces.event.RowEditEvent;
 
 import ejb.CardEJB;
 import entity.Card;
@@ -29,10 +33,15 @@ public class CardBean {
     @PostConstruct
     public void init() {
     	cardList = getAllCards();
+    	//cardList = cardEJB.getAllByUser();
     	/*LearnContext ctx = new LearnContext();
         ctx.setLearnStrategy(new ProgressLearnStrategy());
         ctx.createArchive((ArrayList<Card>) cardList);*/
     }
+    
+    /*public void refresh() {
+    	cardList = getAllCards();
+    }*/
 
     public List<Card> getCardList() {
         return cardList;
@@ -57,6 +66,18 @@ public class CardBean {
 		return cardEJB.getAll();
 	}
 	
+	public List<String> getTopics(){
+		return cardEJB.getAllTopics();
+	}
+	
+	public List<Card> getCardsFromTopic(){
+		currentCard=0;
+		cardList = cardEJB.getCardsFromTopic(topic);
+		//cardEJB.getCardsFromTopic(topic);
+		//return cardEJB.getCardsFromTopic(topic);
+		return null;
+	}
+	
 	private String topic,front,back;
 	
 	public void add() {
@@ -72,6 +93,19 @@ public class CardBean {
     	card.setUser(user);
         cardEJB.saveCard(card);
 	}
+	
+	public void deleteCard() {
+		cardEJB.deleteCard(null);
+	}
+	
+	public void rowEditAction(RowEditEvent event) {
+		Card object = (Card) event.getObject();
+        int zwischenId = object.getCardId();
+        cardEJB.saveCard(object);
+
+        FacesMessage message = new FacesMessage("Row successfully updated");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
 	public String getFront() {
 		return front;

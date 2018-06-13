@@ -1,0 +1,96 @@
+<ui:composition template="/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <f:metadata>
+        <!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
+        <p:separator style="border-color: #ffffff; "/>
+        <h:form id="currentUserForm">
+
+            <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
+            <p:separator />
+            <p:growl id="editUserFormMessages"/>
+            
+            
+            <p:dataTable  id="datatable" paginatorAlwaysVisible="true" paginator="true"
+                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                          rowsPerPageTemplate="10,25,50" rows="10" editable="true"
+                          editMode="row" value="#{cardBean.allCards}" var="card" lazy="true" tableStyle="width:auto" class="table">
+
+                <p:ajax event="rowEdit" listener="#{cardBean.rowEditAction}" update=":currentUserForm:editUserFormMessages" /> 
+
+                <p:column id="userName" headerText="Topic">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{card.topic}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="userNameInput" value="#{card.topic}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>       
+
+                <p:column id="firstName" headerText="Card Front">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{card.front}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="firstNameInput" value="#{card.front}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+
+                <p:column id="LastName" headerText="Card Back">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{card.back}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText id="lastNameInput" value="#{card.back}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>     
+
+
+                <p:column headerText="Bearbeiten">
+                    <p:rowEditor/>
+                </p:column>    
+
+                <p:column headerText="Löschen">
+                    <p:commandButton title="Delete" icon="ui-icon-trash" actionListener="#{viewUsers.rowDeleteAction(user)}" update=":currentUserForm:editUserFormMessages"/>
+                </p:column>    
+
+            </p:dataTable>
+
+            <h:form id="passwordForm">          
+                <p:growl id="passwordMsg" showDetail="true" life="4000" />
+                <pm:field>
+                    <p:outputLabel></p:outputLabel>
+                    <p:inputText></p:inputText>
+                </pm:field>
+                <p:panel header="Show Cards" style="width: 360px;">
+					<h:dataTable value="#{userBean.allUsers}" var="user">
+						<h:column>
+							<f:facet name="header">Index</f:facet>
+							<h:outputText value="#{user.userId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Username</f:facet>
+							<h:outputText value="#{user.name}" />
+						</h:column>
+					</h:dataTable>
+                </p:panel>
+            </h:form>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
