@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.hfu.kkm.card.db.Card;
+import org.hfu.kkm.card.db.CardService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +17,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import ejb.CardEJB;
-import entity.Card;
 
 public class TestAddCards {
 

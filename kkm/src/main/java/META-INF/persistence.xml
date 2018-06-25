@@ -3,7 +3,7 @@
 	<persistence-unit name="kkm">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	<jta-data-source>jdbc/kkm</jta-data-source>
-		<class>entity.Card</class>
-		<class>entity.User</class>
+		<class>org.hfu.kkm.card.db.Card</class>
+		<class>org.hfu.kkm.user.db.User</class>
 	</persistence-unit>
 </persistence>

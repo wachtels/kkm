@@ -1,4 +1,4 @@
-package tools;
+package org.hfu.kkm.tools;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.bean.RequestScoped;
 
-import entity.Card;
+import org.hfu.kkm.card.db.Card;
 
 //@LocalBean
 //@Stateless

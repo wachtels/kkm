@@ -1,4 +1,4 @@
-package bean;
+package org.hfu.kkm.user.ui;
 
 
 import java.util.List;
@@ -8,15 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.Lob;
 
-import ejb.UserEJB;
-import entity.User;
+import org.hfu.kkm.user.db.User;
+import org.hfu.kkm.user.db.UserService;
 
 @ApplicationScoped
 @ManagedBean
-public class UserBean {
+public class UserController {
 
 	@Inject
-	UserEJB userEJB;
+	UserService userEJB;
 	
 	private String name;
 

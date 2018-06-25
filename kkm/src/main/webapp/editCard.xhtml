@@ -1,4 +1,4 @@
-<ui:composition template="/masterTemplate.xhtml"
+<ui:composition template="/index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -23,9 +23,9 @@
             <p:dataTable  id="datatable" paginatorAlwaysVisible="true" paginator="true"
                           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                           rowsPerPageTemplate="10,25,50" rows="10" editable="true"
-                          editMode="row" value="#{cardBean.allCards}" var="card" lazy="true" tableStyle="width:auto" class="table">
+                          editMode="row" value="#{cardController.allCards}" var="card" lazy="true" tableStyle="width:auto" class="table">
 
-                <p:ajax event="rowEdit" listener="#{cardBean.rowEditAction}" update=":currentUserForm:editUserFormMessages" /> 
+                <p:ajax event="rowEdit" listener="#{cardController.rowEditAction}" update=":currentUserForm:editUserFormMessages" /> 
 
                 <p:column id="userName" headerText="Topic">
                     <p:cellEditor>
@@ -78,7 +78,7 @@
                     <p:inputText></p:inputText>
                 </pm:field>
                 <p:panel header="Show Cards" style="width: 360px;">
-					<h:dataTable value="#{userBean.allUsers}" var="user">
+					<h:dataTable value="#{userController.allUsers}" var="user">
 						<h:column>
 							<f:facet name="header">Index</f:facet>
 							<h:outputText value="#{user.userId}" />

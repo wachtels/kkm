@@ -1,4 +1,4 @@
-<ui:composition template="/masterTemplate.xhtml"
+<ui:composition template="/index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -18,7 +18,7 @@
             <p:separator />
             <p:growl id="editUserFormMessages"/>
 
-            <p:panel header="Profile" style="width: 360px;" value="#{userBean.allUsers}" var="user">
+            <p:panel header="Profile" style="width: 360px;" value="#{userController.allUsers}" var="user">
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputText value="Username: " style="width: auto;"/>
 						<h:outputText value="#{user.name}" style="width: auto;"/>

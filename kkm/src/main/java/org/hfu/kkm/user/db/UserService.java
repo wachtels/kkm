@@ -1,4 +1,4 @@
-package ejb;
+package org.hfu.kkm.user.db;
 
 import java.util.List;
 
@@ -8,11 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import entity.User;
-
 @LocalBean
 @Stateless
-public class UserEJB {
+public class UserService {
 
 	@PersistenceContext
 	EntityManager em;

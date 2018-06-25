@@ -1,4 +1,4 @@
-<ui:composition template="/masterTemplate.xhtml"
+<ui:composition template="/index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -21,27 +21,27 @@
 			<h:form id="addCardForm">
 				<p:growl id="passwordMsg" showDetail="true" life="4000" />
 				<!--p:panel header="Select Topic" style="width: 360px;">
-		            <h:selectOneMenu value="#{cardBean.topic}">
-					    <f:selectItems value="#{cardBean.topics}" />
+		            <h:selectOneMenu value="#{cardController.topic}">
+					    <f:selectItems value="#{cardController.topics}" />
 					</h:selectOneMenu>
-					<h:commandButton value="Search for Topic" action="#{cardBean.getCardsFromTopic()}" />
+					<h:commandButton value="Search for Topic" action="#{cardController.getCardsFromTopic()}" />
 				</p:panel-->
                 <p:panel header="Create Card" style="width: 360px;">
 		    		<h:panelGrid colums="2">
 		    			<!-- h:outputLabel value="Select existing topic" />
-		    			<h:selectOneMenu value="#{cardBean.topic}">
-						    <f:selectItems value="#{cardBean.topics}" />
+		    			<h:selectOneMenu value="#{cardController.topic}">
+						    <f:selectItems value="#{cardController.topics}" />
 						</h:selectOneMenu-->
 		    			<h:outputLabel value="Set own topic" />
-		    			<h:inputText id="topic" value="#{cardBean.topic}"/>
+		    			<h:inputText id="topic" value="#{cardController.topic}"/>
 		    			
 		    			<h:outputLabel value="Front" />
-		    			<h:inputText id="front" value="#{cardBean.front}"/>
+		    			<h:inputText id="front" value="#{cardController.front}"/>
 		    			
 		    			<h:outputLabel value="Back" />
-		    			<h:inputText id="back" value="#{cardBean.back}"/>
+		    			<h:inputText id="back" value="#{cardController.back}"/>
 		    			
-		    			<h:commandButton value="Add Card" update="addCardForm" icon="ui-icon-check" actionListener="#{cardBean.add}" action="/addCard?faces-redirect=true"/>
+		    			<h:commandButton value="Add Card" update="addCardForm" icon="ui-icon-check" actionListener="#{cardController.add}" action="/addCard?faces-redirect=true"/>
 		    		</h:panelGrid>
 		    	</p:panel>
     		</h:form>

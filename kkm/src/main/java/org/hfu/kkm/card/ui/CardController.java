@@ -1,4 +1,4 @@
-package bean;
+package org.hfu.kkm.card.ui;
 
 
 import java.util.ArrayList;
@@ -9,23 +9,23 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.hfu.kkm.card.db.Card;
+import org.hfu.kkm.card.db.CardService;
+import org.hfu.kkm.tools.LearnContext;
+import org.hfu.kkm.tools.ProgressLearnStrategy;
+import org.hfu.kkm.user.db.User;
 import org.primefaces.event.RowEditEvent;
 
-import ejb.CardEJB;
-import entity.Card;
-import entity.User;
-import tools.LearnContext;
-import tools.ProgressLearnStrategy;
-
-@ApplicationScoped
+@RequestScoped
 @ManagedBean
-public class CardBean {
+public class CardController {
 
 	@Inject
-	CardEJB cardEJB;
+	CardService cardEJB;
 	
 	private List<Card> cardList;
 	private int currentCard=0;

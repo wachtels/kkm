@@ -1,7 +1,10 @@
-package entity;
+package org.hfu.kkm.user.db;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hfu.kkm.card.db.Card;
+
 import java.util.List;
 
 

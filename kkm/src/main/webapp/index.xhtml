@@ -12,109 +12,70 @@
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>KKM</title>
                 
-                <!-- >link type="text/css"
-              href="${facesContext.externalContext.requestContextPath}/resources/css/tableStyle.css"
-              rel="stylesheet" /-->
+                <link type="text/css" href="${facesContext.externalContext.requestContextPath}/resources/css/tableStyle.css" rel="stylesheet" />
+              
+              	<link type="text/css" href="${facesContext.externalContext.requestContextPath}/resources/css/flashcard.css" rel="stylesheet" />
             </f:facet>
-			<style type="text/css">
-			.flip-container {
-				perspective: 1000px;
-			}
-			
-			.flip-container:hover .flipper, .flip-container.hover .flipper {
-				transform: rotateY(180deg);
-			}
-			
-			.flip-container, .front, .back {
-				width: 320px;
-				height: 480px;
-			}
-			
-			/* flip speed goes here */
-			.flipper {
-				transition: 0.6s;
-				transform-style: preserve-3d;
-			
-				position: relative;
-			}
-			
-			/* hide back of pane during swap */
-			.front, .back {
-				backface-visibility: hidden;
-			
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-			
-			/* front pane, placed above back */
-			.front {
-				z-index: 2;
-				transform: rotateY(0deg);
-				background-color:lightblue;
-			}
-			
-			/* back, initially hidden pane */
-			.back {
-				transform: rotateY(180deg);
-				background-color:grey;
-			}
-			</style>
+
         </h:head>
 
         <h:body>
-			<h:outputText value="#{numberBean.number}"/>
-			<h:form>
-           		<h:commandButton value="submit" action="#{numberBean.increase}"/>
-           	</h:form>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="93">
+                    <h:form>  
+                        <p:growl id="messages" life="2000"/>
+                        <p:menubar>
+                            <p:menuitem>
+                                <h:link><!-- outcome="/private/management.xhtml?faces-redirect=true"-->
+                                    <h:graphicImage value="/resources/images/logo_kkm.png" height="50"/>
+                                </h:link>
+                            </p:menuitem>
+                            
+                            <p:menuitem value="Benutzer hinzufügen" url="/private/addUser.xhtml" icon="ui-icon-document" class="nothStyle" rendered="#{viewUsers.checkUserRole()}"/>
+                            <p:menuitem value="Benutzer bearbeiten" url="/private/editUser.xhtml" icon="ui-icon-pencil" class="nothStyle" rendered="#{viewUsers.checkUserRole()}" />
+                            <f:facet name="options">
+                                <p:commandButton value="Ausloggen" icon="ui-icon-extlink" style="width: auto;"/><!-- action="#{web.logout}" id="logoutButton"/-->
+                            </f:facet>
+                        </p:menubar>
+
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="80" closable="false" collapsible="false" style="display: block; margin: 0px auto;">
+                    <div align ="center">
+                        <!--Build with Love &#x2764; and Coffee &#x2615; during BAM - SPM WS 2017/2018 - powered by:-->
+                        <br></br>
+                        BAM - Enterprise Software Architecture - SoSe 2018
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="235" header="Menu" resizable="false" closable="false" collapsible="false" id="layoutUnit">
+                    <p:menu toggleable="true">
+
+                        <p:submenu label="Flashcard">
+                        	<p:menuitem value="learn cards" outcome="/learnCard.xhtml" id="learnCardView"/>
+                            <p:menuitem value="add card" outcome="/addCard.xhtml" id="addCardView"/>
+                            <p:menuitem value="edit card" outcome="/editCard.xhtml" id="editCardView"/>
+                        </p:submenu>
+                        <p:submenu label="Community">
+                            <p:menuitem value="Forum - Offline" outcome="/dummy.xhtml" id="enterForumView"/>
+                            <p:menuitem value="Marketplace - Offline" outcome="/dummy.xhtml" id="enterMarketplaceView"/>
+                        </p:submenu>
+                        <p:submenu label="My Profile">
+                            <p:menuitem value="Show/Edit" outcome="/dummy.xhtml" id="subProfilView"/>
+                        </p:submenu>
+
+                    </p:menu>
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <ui:insert name="content"></ui:insert>
+                </p:layoutUnit>
+            </p:layout>
         </h:body>
 
-		<p:accordionPanel value="#{cardBean.allCards}" var="card" activeIndex="null">
-			        <p:tab title="#{card.front}">
-			            <h:panelGrid columns="2" cellpadding="10">
-			                <h:outputText value="#{card.back}" />
-			            </h:panelGrid>
-			        </p:tab>
-    	</p:accordionPanel>
-    	
-    	<h:form>
-    		<h:panelGrid colums="2">
-    			<h:outputLabel value="Topic" />
-    			<h:inputText value="#{cardBean.topic}"/>
-    			
-    			<h:outputLabel value="Front" />
-    			<h:inputText value="#{cardBean.front}"/>
-    			
-    			<h:outputLabel value="Back" />
-    			<h:inputText value="#{cardBean.back}"/>
-    			
-    			<h:commandButton value="Add Card" action="#{cardBean.add}"/>
-    		</h:panelGrid>
-    	</h:form>
-    			
- 		<h:form>
-		    <h:selectOneListbox value="Cards">
-		        <f:selectItems value="#{cardBean.allCards}" var="card" itemLabel="#{card.front}"/> <!-- itemValue="#{card.front}" itemLabel="#{card.back}" /-->
-		    </h:selectOneListbox>
-		    <h:commandButton value="Submit" action="#{bean.submit}" />
-		    
-		</h:form>
-		
-		
-		<p:outputPanel style="display:block" class="flip-container" onclick="this.classList.toggle('hover');">
-			<p:outputPanel style="display:block" class="flipper"> <!-- value="#{cardBean.cardList}" var="card"-->
-				<p:outputPanel style="display:block" class="front">
-					<h:outputText value="#{cardBean.currentCard.front}" />
-				</p:outputPanel>
-				<p:outputPanel style="display:block" class="back">
-					<h:outputText value="#{cardBean.currentCard.back}" />
-				</p:outputPanel>
-			</p:outputPanel>
-		</p:outputPanel>
-		<h:form>
-		    <h:commandButton value="next Card" action="#{cardBean.getNextCard()}" />
-		</h:form>
-		<!-- button onclick="document.querySelector('#flip-toggle').classList.toggle('hover');" class="sexyButton">Toggle Flip</button-->
     </f:view>
 </html>
 
