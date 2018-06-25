@@ -33,13 +33,13 @@
 						    <f:selectItems value="#{cardBean.topics}" />
 						</h:selectOneMenu-->
 		    			<h:outputLabel value="Set own topic" />
-		    			<h:inputText value="#{cardBean.topic}"/>
+		    			<h:inputText id="topic" value="#{cardBean.topic}"/>
 		    			
 		    			<h:outputLabel value="Front" />
-		    			<h:inputText value="#{cardBean.front}"/>
+		    			<h:inputText id="front" value="#{cardBean.front}"/>
 		    			
 		    			<h:outputLabel value="Back" />
-		    			<h:inputText value="#{cardBean.back}"/>
+		    			<h:inputText id="back" value="#{cardBean.back}"/>
 		    			
 		    			<h:commandButton value="Add Card" update="addCardForm" icon="ui-icon-check" actionListener="#{cardBean.add}" action="/addCard?faces-redirect=true"/>
 		    		</h:panelGrid>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>KKM</title>
+                
+                <!-- >link type="text/css"
+              href="${facesContext.externalContext.requestContextPath}/resources/css/tableStyle.css"
+              rel="stylesheet" /-->
+            </f:facet>
+			<style type="text/css">
+			.flip-container {
+				perspective: 1000px;
+			}
+			
+			.flip-container:hover .flipper, .flip-container.hover .flipper {
+				transform: rotateY(180deg);
+			}
+			
+			.flip-container, .front, .back {
+				width: 320px;
+				height: 480px;
+			}
+			
+			/* flip speed goes here */
+			.flipper {
+				transition: 0.6s;
+				transform-style: preserve-3d;
+			
+				position: relative;
+			}
+			
+			/* hide back of pane during swap */
+			.front, .back {
+				backface-visibility: hidden;
+			
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			/* front pane, placed above back */
+			.front {
+				z-index: 2;
+				transform: rotateY(0deg);
+				background-color:lightblue;
+			}
+			
+			/* back, initially hidden pane */
+			.back {
+				transform: rotateY(180deg);
+				background-color:grey;
+			}
+			</style>
+        </h:head>
+
+        <h:body>
+			<h:outputText value="#{numberBean.number}"/>
+			<h:form>
+           		<h:commandButton value="submit" action="#{numberBean.increase}"/>
+           	</h:form>
+        </h:body>
+
+		<p:accordionPanel value="#{cardBean.allCards}" var="card" activeIndex="null">
+			        <p:tab title="#{card.front}">
+			            <h:panelGrid columns="2" cellpadding="10">
+			                <h:outputText value="#{card.back}" />
+			            </h:panelGrid>
+			        </p:tab>
+    	</p:accordionPanel>
+    	
+    	<h:form>
+    		<h:panelGrid colums="2">
+    			<h:outputLabel value="Topic" />
+    			<h:inputText value="#{cardBean.topic}"/>
+    			
+    			<h:outputLabel value="Front" />
+    			<h:inputText value="#{cardBean.front}"/>
+    			
+    			<h:outputLabel value="Back" />
+    			<h:inputText value="#{cardBean.back}"/>
+    			
+    			<h:commandButton value="Add Card" action="#{cardBean.add}"/>
+    		</h:panelGrid>
+    	</h:form>
+    			
+ 		<h:form>
+		    <h:selectOneListbox value="Cards">
+		        <f:selectItems value="#{cardBean.allCards}" var="card" itemLabel="#{card.front}"/> <!-- itemValue="#{card.front}" itemLabel="#{card.back}" /-->
+		    </h:selectOneListbox>
+		    <h:commandButton value="Submit" action="#{bean.submit}" />
+		    
+		</h:form>
+		
+		
+		<p:outputPanel style="display:block" class="flip-container" onclick="this.classList.toggle('hover');">
+			<p:outputPanel style="display:block" class="flipper"> <!-- value="#{cardBean.cardList}" var="card"-->
+				<p:outputPanel style="display:block" class="front">
+					<h:outputText value="#{cardBean.currentCard.front}" />
+				</p:outputPanel>
+				<p:outputPanel style="display:block" class="back">
+					<h:outputText value="#{cardBean.currentCard.back}" />
+				</p:outputPanel>
+			</p:outputPanel>
+		</p:outputPanel>
+		<h:form>
+		    <h:commandButton value="next Card" action="#{cardBean.getNextCard()}" />
+		</h:form>
+		<!-- button onclick="document.querySelector('#flip-toggle').classList.toggle('hover');" class="sexyButton">Toggle Flip</button-->
+    </f:view>
+</html>
+

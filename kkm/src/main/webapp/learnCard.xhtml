@@ -22,7 +22,7 @@
 	            <h:selectOneMenu value="#{cardBean.topic}">
 				    <f:selectItems value="#{cardBean.topics}" />
 				</h:selectOneMenu>
-				 <h:commandButton value="Search for Topic" action="#{cardBean.getCardsFromTopic()}" />
+				<h:commandButton value="Search for Topic" action="#{cardBean.getCardsFromTopic()}" />
 			</p:panel>
 			<p:panel header="Rate Card" style="width: 360px;">
 			<p:outputPanel style="display:block" class="flip-container" onclick="this.classList.toggle('hover');">
