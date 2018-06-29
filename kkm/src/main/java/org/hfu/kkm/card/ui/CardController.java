@@ -1,15 +1,11 @@
 package org.hfu.kkm.card.ui;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -20,12 +16,11 @@ import org.hfu.kkm.tools.ProgressLearnStrategy;
 import org.hfu.kkm.user.db.User;
 import org.primefaces.event.RowEditEvent;
 
-@RequestScoped
-@ManagedBean //Named
+@Model
 public class CardController {
 
 	@Inject
-	CardService cardEJB;
+	CardService cardService;
 	
 	private List<Card> cardList;
 	private int currentCard=0;
@@ -63,16 +58,16 @@ public class CardController {
     }
 	
 	public List<Card> getAllCards(){
-		return cardEJB.getAll();
+		return cardService.getAll();
 	}
 	
 	public List<String> getTopics(){
-		return cardEJB.getAllTopics();
+		return cardService.getAllTopics();
 	}
 	
 	public List<Card> getCardsFromTopic(){
 		currentCard=0;
-		cardList = cardEJB.getCardsFromTopic(topic);
+		cardList = cardService.getCardsFromTopic(topic);
 		//cardEJB.getCardsFromTopic(topic);
 		//return cardEJB.getCardsFromTopic(topic);
 		return null;
@@ -81,27 +76,34 @@ public class CardController {
 	private String topic,front,back;
 	
 	public void add() {
-		User user = new User();
-		user.setUserId(1);
-		
-		Card card = new Card();
-    	card.setTopic(topic);
-    	card.setFront(front);
-    	card.setBack(back);
-    	card.setPriority(10);
-    	card.setCount(0);
-    	card.setUser(user);
-        cardEJB.saveCard(card);
+			if(topic.length()>=3) {
+			User user = new User();
+			user.setUserId(1);
+			
+			Card card = new Card();
+	    	card.setTopic(topic);
+	    	card.setFront(front);
+	    	card.setBack(back);
+	    	card.setPriority(10);
+	    	card.setCount(0);
+	    	card.setUser(user);
+	        cardService.saveCard(card);
+	        FacesMessage message = new FacesMessage("Card successfully added");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+		}else {
+			FacesMessage message = new FacesMessage("Topic length to short.");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+		}
 	}
 	
 	public void deleteCard() {
-		cardEJB.deleteCard(null);
+		cardService.deleteCard(null);
 	}
 	
 	public void rowEditAction(RowEditEvent event) {
 		Card object = (Card) event.getObject();
         int zwischenId = object.getCardId();
-        cardEJB.saveCard(object);
+        cardService.saveCard(object);
 
         FacesMessage message = new FacesMessage("Row successfully updated");
         FacesContext.getCurrentInstance().addMessage(null, message);

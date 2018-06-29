@@ -2,12 +2,12 @@ package org.hfu.kkm.core;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.inject.Model;
 import javax.faces.bean.ManagedProperty;
 import org.hfu.kkm.core.Theme;
 import org.hfu.kkm.core.ThemeService;
  
-@ManagedBean
+@Model
 public class ThemeSwitcherView {
  
     private List<Theme> themes;

@@ -3,27 +3,24 @@ package org.hfu.kkm.user.ui;
 
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.persistence.Lob;
 
 import org.hfu.kkm.user.db.User;
 import org.hfu.kkm.user.db.UserService;
 
-@ApplicationScoped
-@ManagedBean
+@Model
 public class UserController {
 
 	@Inject
-	UserService userEJB;
+	UserService userService;
 	
 	private String name;
 
 	private byte[] picture;
 	
 	public List<User> getAllUsers(){
-		return userEJB.getAll();
+		return userService.getAll();
 	}
 
 	public String getName() {

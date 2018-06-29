@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
-@LocalBean
-@Stateless
+@Transactional
+@Model
 public class UserService {
 
 	@PersistenceContext

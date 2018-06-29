@@ -11,15 +11,11 @@
     </f:metadata>
 
     <ui:define name="content">
-        <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
-        <p:separator style="border-color: #ffffff; "/>
         <h:form>
-
 			<h:form>
-				<p:panel header="404" style="width: 360px;">
-		            <p:button value="back to startpage" outcome="/index.xhtml" icon="ui-icon-refresh"/>
-				</p:panel>
-               
+				<h:graphicImage value="#{resource['images/404.png']}"/>
+				<br />
+		        <p:button value="back to startpage" outcome="/private/index.xhtml" icon="ui-icon-refresh"/>
     		</h:form>
         </h:form>
     </ui:define>

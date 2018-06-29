@@ -2,7 +2,9 @@ package org.hfu.kkm.card.db;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
+import org.hfu.kkm.core.BasicEntity;
 import org.hfu.kkm.user.db.User;
 
 
@@ -12,7 +14,7 @@ import org.hfu.kkm.user.db.User;
  */
 @Entity
 @NamedQuery(name="Card.findAll", query="SELECT c FROM Card c")
-public class Card implements Serializable {
+public class Card extends BasicEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,11 +25,14 @@ public class Card implements Serializable {
 	private String back;
 
 	private int count;
+	
+	private int version;
 
 	private String front;
 
 	private int priority;
 
+	@Size(min=3,max=20)
 	private String topic;
 
 	//bi-directional many-to-one association to User
@@ -94,4 +99,11 @@ public class Card implements Serializable {
 		this.user = user;
 	}
 
+	public int getVersion() {
+		return this.version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 }

@@ -5,4 +5,11 @@
     <param-value>sunny</param-value> 
     <!-- <param-value>#{ThemeService.themes}</param-value>   -->
 </context-param>
+<welcome-file-list>
+ 	<welcome-file>/private/index.xhtml</welcome-file>
+</welcome-file-list>
+<error-page>
+ 	<error-code>404</error-code>
+ 	<location>/error/error.xhtml</location>
+</error-page>
 </web-app>

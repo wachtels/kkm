@@ -3,17 +3,14 @@ package org.hfu.kkm.card.db;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.enterprise.inject.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
-@LocalBean
-@Stateless
+@Transactional
+@Model
 public class CardService {
 
 	@PersistenceContext

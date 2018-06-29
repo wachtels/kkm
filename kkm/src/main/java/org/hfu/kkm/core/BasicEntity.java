@@ -14,19 +14,19 @@ public abstract class BasicEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
+	/*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id;*/
     @Version
     private int version;
 
-    public long getId() {
+    /*public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
+    }*/
 
     public int getVersion() {
         return version;

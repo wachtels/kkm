@@ -11,13 +11,13 @@
     </f:metadata>
 
     <ui:define name="content">
-        <h:outputText value="Add Flashcards" style="font-size: x-large" /> 
+        <h:outputText value="Edit Flashcards" style="font-size: x-large" /> 
         <p:separator style="border-color: #ffffff; "/>
-        <h:form id="currentUserForm">
+        <h:form id="currentForm">
 
-            <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
+            <p:button value="Refresh" outcome="/private/addCard.xhtml" icon="ui-icon-refresh"/>
             <p:separator />
-            <p:growl id="editUserFormMessages"/>
+            <p:growl id="editCardMessage"/>
             
             
             <p:dataTable  id="datatable" paginatorAlwaysVisible="true" paginator="true"
@@ -25,7 +25,7 @@
                           rowsPerPageTemplate="10,25,50" rows="10" editable="true"
                           editMode="row" value="#{cardController.allCards}" var="card" lazy="true" tableStyle="width:auto" class="table">
 
-                <p:ajax event="rowEdit" listener="#{cardController.rowEditAction}" update=":currentUserForm:editUserFormMessages" /> 
+                <p:ajax event="rowEdit" listener="#{cardController.rowEditAction}" update=":currentForm:editCardMessage" /> 
 
                 <p:column id="userName" headerText="Topic">
                     <p:cellEditor>
@@ -66,8 +66,8 @@
                 </p:column>    
 
                 <p:column headerText="Löschen">
-                    <p:commandButton title="Delete" icon="ui-icon-trash" actionListener="#{viewUsers.rowDeleteAction(user)}" update=":currentUserForm:editUserFormMessages"/>
-                </p:column>    
+                    <p:commandButton title="Delete" icon="ui-icon-trash" actionListener="#{viewUsers.rowDeleteAction(card)}" update=":currentForm:editCardMessage"/>
+                </p:column>
 
             </p:dataTable>
 

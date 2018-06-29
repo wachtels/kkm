@@ -15,18 +15,18 @@
         <p:separator style="border-color: #ffffff; "/>
         <h:form>
 
-            <p:button value="Refresh" outcome="/addCard.xhtml" icon="ui-icon-refresh"/>
+            <p:button value="Refresh" outcome="/private/addCard.xhtml" icon="ui-icon-refresh"/>
             <p:separator />
 
 			<h:form id="addCardForm">
-				<p:growl id="passwordMsg" showDetail="true" life="4000" />
+				<p:growl id="addCardMessage"/>
 				<!--p:panel header="Select Topic" style="width: 360px;">
 		            <h:selectOneMenu value="#{cardController.topic}">
 					    <f:selectItems value="#{cardController.topics}" />
 					</h:selectOneMenu>
 					<h:commandButton value="Search for Topic" action="#{cardController.getCardsFromTopic()}" />
 				</p:panel-->
-                <p:panel header="Create Card" style="width: 360px;">
+                <p:panel header="Create Card" id="addCardPanel" style="width: 360px;">
 		    		<h:panelGrid colums="2">
 		    			<!-- h:outputLabel value="Select existing topic" />
 		    			<h:selectOneMenu value="#{cardController.topic}">
@@ -40,8 +40,7 @@
 		    			
 		    			<h:outputLabel value="Back" />
 		    			<h:inputText id="back" value="#{cardController.back}"/>
-		    			
-		    			<h:commandButton value="Add Card" update="addCardForm" icon="ui-icon-check" actionListener="#{cardController.add}" action="/addCard?faces-redirect=true"/>
+		    			<h:commandButton value="Add Card" update=":addCardPanel:addCardMessage" icon="ui-icon-check" actionListener="#{cardController.add}" action="/addCard?faces-redirect=true"/>
 		    		</h:panelGrid>
 		    	</p:panel>
     		</h:form>

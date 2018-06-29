@@ -6,5 +6,7 @@
 		<class>org.hfu.kkm.card.db.Card</class>
 		<class>org.hfu.kkm.user.db.User</class>
 		<class>org.hfu.kkm.core.BasicEntity</class>
+		<class>org.hfu.kkm.community.Community</class>
+		<class>org.hfu.kkm.statistic.db.Statistic</class>
 	</persistence-unit>
 </persistence>

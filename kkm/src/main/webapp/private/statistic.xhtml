@@ -1,0 +1,28 @@
+<ui:composition template="/index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+	<f:metadata>
+		<!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:outputText value="Statistic" style="font-size: x-large" />
+		<h:form>
+			<p:panel header="Select Topic" style="width: 360px;">
+	            <h:selectOneMenu value="#{statisticController.topic}">
+				    <f:selectItems value="#{cardController.topics}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Search for Topic" action="#{statisticController.refreshPieModel()}" />
+			</p:panel>
+		</h:form>
+		<p:separator style="border-color: #ffffff; " />
+		<p:chart type="pie" model="#{statisticController.pieModel1}" style="width:400px;height:300px" />
+		<p:chart type="bar" model="#{statisticController.horizontalBarModel}" style="height:300px"/>
+	</ui:define>
+</ui:composition>
+
