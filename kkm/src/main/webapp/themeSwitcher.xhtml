@@ -1,0 +1,30 @@
+<ui:composition template="/index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+	<f:metadata>
+		<!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:outputText value="Change Theme" style="font-size: x-large" />
+		<p:separator style="border-color: #ffffff; " />
+		<h:form>
+
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:outputLabel for="basic" value="Basic:" />
+				<p:themeSwitcher id="basic" style="width:165px">
+					<f:selectItem itemLabel="Choose Theme" itemValue="" />
+					<f:selectItems value="#{themeSwitcherView.themes}" var="theme"
+						itemLabel="#{theme.displayName}" itemValue="#{theme.name}" />
+				</p:themeSwitcher>
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+

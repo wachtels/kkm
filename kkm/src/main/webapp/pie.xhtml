@@ -1,0 +1,20 @@
+<ui:composition template="/index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+	<f:metadata>
+		<!--f:viewAction action="#{viewUsers.populateOwnProfil()}"/-->
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:outputText value="PieChart" style="font-size: x-large" />
+		<p:separator style="border-color: #ffffff; " />
+		<p:chart type="pie" model="#{chartView.pieModel1}" style="width:400px;height:300px" />
+		<p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:300px"/>
+	</ui:define>
+</ui:composition>
+

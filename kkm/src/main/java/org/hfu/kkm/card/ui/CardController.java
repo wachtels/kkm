@@ -21,7 +21,7 @@ import org.hfu.kkm.user.db.User;
 import org.primefaces.event.RowEditEvent;
 
 @RequestScoped
-@ManagedBean
+@ManagedBean //Named
 public class CardController {
 
 	@Inject

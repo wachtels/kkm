@@ -10,7 +10,11 @@ import javax.persistence.Version;
 @MappedSuperclass
 public abstract class BasicEntity implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Version

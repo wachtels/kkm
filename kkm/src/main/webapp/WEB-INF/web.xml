@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<context-param>  
+    <param-name>primefaces.THEME</param-name> 
+    <param-value>sunny</param-value> 
+    <!-- <param-value>#{ThemeService.themes}</param-value>   -->
+</context-param>
+</web-app>
