@@ -4,25 +4,20 @@ package org.hfu.kkm.card.ui;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
 import org.hfu.kkm.card.db.Card;
 import org.hfu.kkm.card.db.CardService;
-import org.hfu.kkm.tools.LearnContext;
-import org.hfu.kkm.tools.ProgressLearnStrategy;
 import org.hfu.kkm.user.db.User;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 
+
 @ManagedBean
 @ViewScoped
-
 public class CardController {
 
 	@Inject
@@ -58,11 +53,13 @@ public class CardController {
     }
     
     public Card getCurrentCard() {
+    	System.out.println("cardlist.length: "+cardList.size()+" currentCard: "+cardList.get(currentCard).getFront());
         return cardList.get(currentCard);
     }
     
     public Card getNextCard() {
     	++currentCard;
+    	System.out.println("getNextCard cardsize: "+cardList.size());
     	if(cardList.size()>currentCard) {
     		return cardList.get(currentCard);
     	}else {
@@ -80,12 +77,9 @@ public class CardController {
 		return cardService.getAllTopics();
 	}
 	
-	public List<Card> getCardsFromTopic(){
+	public void getCardsFromTopic(){
 		currentCard=0;
 		cardList = cardService.getCardsFromTopic(topic);
-		//cardEJB.getCardsFromTopic(topic);
-		//return cardEJB.getCardsFromTopic(topic);
-		return null;
 	}
 	
 	private String topic,front,back;
