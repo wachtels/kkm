@@ -15,29 +15,21 @@ public class CardService {
 	@PersistenceContext
 	EntityManager em;
 	
+	@Transactional
 	public void saveCard(Card card) {
 		em.merge(card);
 	}
-	//@Transactional(Transactional.TxType.REQUIRES_NEW)
+	
 	public void deleteCard(Card card) {
-		/*EntityManager em = ConnectionFactory.createEntityManager(); 
-		if (!em.contains(card)) {
-		    card = em.merge(card);
-		}
-		em.remove(card);
-		em.getTransaction().commit();        
-        em.close();*/
 		em.remove(em.merge(card));
 	}
 	
 	public List<Card> getAll(){
 		Query q = em.createQuery("SELECT c From Card c");
-		//Query q = em.createQuery("SELECT c From Card c WHERE c.topic = 'test'");
 		return (List<Card>) q.getResultList();
 	}
 	
 	public List<String> getAllTopics(){
-		//Query q = em.createQuery("SELECT c.topic From Card c JOIN User u ON (c.user_id = u.user_id) WHERE c.user_id = 2");
 		Query q = em.createQuery("SELECT c.topic From Card c");
 		List<String> al = (List<String>) q.getResultList();
 		List<String> deDupStringList = new ArrayList<>(new HashSet<>(al));

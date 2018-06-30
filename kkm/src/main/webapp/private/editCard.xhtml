@@ -25,7 +25,7 @@
                           rowsPerPageTemplate="10,25,50" rows="10" editable="true"
                           editMode="row" value="#{cardController.allCards}" var="card" lazy="true" tableStyle="width:auto" class="table" binding="#{cardController.datatableCards}">
 
-                <p:ajax event="rowEdit" listener="#{cardController.rowEditAction}" update=":currentForm:editCardMessage" /> 
+                <p:ajax event="rowEdit" listener="#{cardController.rowEditAction()}" update=":currentForm:editCardMessage" /> 
 
                 <p:column id="userName" headerText="Topic">
                     <p:cellEditor>
@@ -62,7 +62,7 @@
 
 
                 <p:column headerText="Bearbeiten">
-                    <p:rowEditor/>
+                    <p:rowEditor />
                 </p:column>    
 
                 <p:column headerText="Löschen">

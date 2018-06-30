@@ -109,22 +109,20 @@ public class CardController {
 		cardService.deleteCard(null);
 	}
 	
-	public void rowEditAction(RowEditEvent event) {
-		Card object = (Card) event.getObject();
-        int zwischenId = object.getCardId();
-        cardService.saveCard(object);
+	public void rowEditAction() {
 
-        FacesMessage message = new FacesMessage("Row successfully updated");
+        Card card = (Card) datatableCards.getRowData();
+        cardService.saveCard(card);
+
+        FacesMessage message = new FacesMessage("Row could not be updated");
         FacesContext.getCurrentInstance().addMessage(null, message);    
     }
 	
 	 public void rowDeleteAction() {
 	        User currentUser = new User();
 	        currentUser.setUserId(1);
-	        int index =datatableCards.getRowIndex();
+	        //int index =datatableCards.getRowIndex();
 	        Card card = (Card) datatableCards.getRowData();
-	        System.out.println("obj:"+card.getFront());
-	      
             cardService.deleteCard(card);
 	           
 	        FacesMessage message = new FacesMessage("Row successfully deleted");
