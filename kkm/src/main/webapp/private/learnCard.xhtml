@@ -25,13 +25,13 @@
 				<h:commandButton value="Search for Topic" action="#{cardController.getCardsFromTopic()}" />
 			</p:panel>
 			<p:panel header="Rate Card" style="width: 360px;">
-			<p:outputPanel style="display:block" class="flip-container" onclick="this.classList.toggle('hover');">
+			<p:outputPanel style="display:block;" class="flip-container" onclick="this.classList.toggle('hover');">
 				<p:outputPanel style="display:block" class="flipper">
 					<p:outputPanel style="display:block" class="front">
-						<h:outputText value="#{cardController.currentCard.front}" />
+						<div class="centered"><h:outputText value="#{cardController.currentCard.front}" /></div>
 					</p:outputPanel>
 					<p:outputPanel style="display:block" class="back">
-						<h:outputText value="#{cardController.currentCard.back}" />
+						<div class="centered"><h:outputText value="#{cardController.currentCard.back}" /></div>
 					</p:outputPanel>
 				</p:outputPanel>
 			</p:outputPanel>

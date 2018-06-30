@@ -1,5 +1,6 @@
 .flip-container {
 	perspective: 1000px;
+	text-align:center;
 }
 
 .flip-container:hover .flipper, .flip-container.hover .flipper {
@@ -51,4 +52,12 @@
 	transform: rotateY(180deg);
 	background-color:lightgrey;
 	box-shadow: 10px 10px 5px grey;
+}
+.centered{
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%)
 }
