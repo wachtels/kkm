@@ -6,6 +6,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -14,9 +17,12 @@ import org.hfu.kkm.card.db.CardService;
 import org.hfu.kkm.tools.LearnContext;
 import org.hfu.kkm.tools.ProgressLearnStrategy;
 import org.hfu.kkm.user.db.User;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 
-@Model
+@ManagedBean
+@ViewScoped
+
 public class CardController {
 
 	@Inject
@@ -24,8 +30,17 @@ public class CardController {
 	
 	private List<Card> cardList;
 	private int currentCard=0;
+	private DataTable datatableCards;
 
-    @PostConstruct
+    public DataTable getDatatableCards() {
+		return datatableCards;
+	}
+
+	public void setDatatableCards(DataTable datatableCards) {
+		this.datatableCards = datatableCards;
+	}
+
+	@PostConstruct
     public void init() {
     	cardList = getAllCards();
     	//cardList = cardEJB.getAllByUser();
@@ -106,8 +121,21 @@ public class CardController {
         cardService.saveCard(object);
 
         FacesMessage message = new FacesMessage("Row successfully updated");
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        FacesContext.getCurrentInstance().addMessage(null, message);    
     }
+	
+	 public void rowDeleteAction() {
+	        User currentUser = new User();
+	        currentUser.setUserId(1);
+	        int index =datatableCards.getRowIndex();
+	        Card card = (Card) datatableCards.getRowData();
+	        System.out.println("obj:"+card.getFront());
+	      
+            cardService.deleteCard(card);
+	           
+	        FacesMessage message = new FacesMessage("Row successfully deleted");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+	    }
 
 	public String getFront() {
 		return front;

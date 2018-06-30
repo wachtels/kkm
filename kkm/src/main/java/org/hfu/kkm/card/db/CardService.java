@@ -19,9 +19,16 @@ public class CardService {
 	public void saveCard(Card card) {
 		em.merge(card);
 	}
-	
+	//@Transactional(Transactional.TxType.REQUIRES_NEW)
 	public void deleteCard(Card card) {
+		/*EntityManager em = ConnectionFactory.createEntityManager(); 
+		if (!em.contains(card)) {
+		    card = em.merge(card);
+		}
 		em.remove(card);
+		em.getTransaction().commit();        
+        em.close();*/
+		em.remove(em.merge(card));
 	}
 	
 	public List<Card> getAll(){
