@@ -59,37 +59,13 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>     
-
-
                 <p:column headerText="Bearbeiten">
                     <p:rowEditor />
                 </p:column>    
-
                 <p:column headerText="Löschen">
                     <p:commandButton title="Delete" icon="ui-icon-trash" actionListener="#{cardController.rowDeleteAction()}" update=":currentForm:editCardMessage"/>
                 </p:column>
-
             </p:dataTable>
-
-            <h:form id="passwordForm">          
-                <p:growl id="passwordMsg" showDetail="true" life="4000" />
-                <pm:field>
-                    <p:outputLabel></p:outputLabel>
-                    <p:inputText></p:inputText>
-                </pm:field>
-                <p:panel header="Show Cards" style="width: 360px;">
-					<h:dataTable value="#{userController.allUsers}" var="user">
-						<h:column>
-							<f:facet name="header">Index</f:facet>
-							<h:outputText value="#{user.userId}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Username</f:facet>
-							<h:outputText value="#{user.name}" />
-						</h:column>
-					</h:dataTable>
-                </p:panel>
-            </h:form>
         </h:form>
     </ui:define>
 </ui:composition>

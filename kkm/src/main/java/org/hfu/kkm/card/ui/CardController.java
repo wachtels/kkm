@@ -1,6 +1,7 @@
 package org.hfu.kkm.card.ui;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.hfu.kkm.card.db.Card;
 import org.hfu.kkm.card.db.CardService;
+import org.hfu.kkm.tools.LearnContext;
+import org.hfu.kkm.tools.ProgressLearnStrategy;
 import org.hfu.kkm.user.db.User;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
@@ -38,10 +41,10 @@ public class CardController {
 	@PostConstruct
     public void init() {
     	cardList = getAllCards();
-    	//cardList = cardEJB.getAllByUser();
-    	/*LearnContext ctx = new LearnContext();
-        ctx.setLearnStrategy(new ProgressLearnStrategy());
-        ctx.createArchive((ArrayList<Card>) cardList);*/
+//    	cardList = cardEJB.getAllByUser();
+//    	LearnContext ctx = new LearnContext();
+//      ctx.setLearnStrategy(new ProgressLearnStrategy());
+//      ctx.createArchive((List<Card>) cardList);
     }
     
     /*public void refresh() {

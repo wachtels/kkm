@@ -1,6 +1,7 @@
 package org.hfu.kkm.tools;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -17,7 +18,7 @@ public class LearnContext {
 		this.strategy = strategy;
 	}
 
-	public void createArchive(ArrayList<Card> cards) {
+	public void createArchive(List<Card> cards) {
 		strategy.learn(cards);
 	}
 }

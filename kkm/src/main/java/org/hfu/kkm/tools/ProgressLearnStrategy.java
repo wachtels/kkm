@@ -3,6 +3,7 @@ package org.hfu.kkm.tools;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -15,7 +16,7 @@ import org.hfu.kkm.card.db.Card;
 public class ProgressLearnStrategy implements LearnStrategy{
 
 	@Override
-	public void learn(ArrayList<Card> cards) {
+	public void learn(List<Card> cards) {
 		Collections.sort(cards, new Comparator<Card>() {
 		    @Override
 		    public int compare(Card first, Card second) {

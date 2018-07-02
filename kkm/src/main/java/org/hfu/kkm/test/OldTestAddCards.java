@@ -18,10 +18,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestAddCards {
+public class OldTestAddCards {
 
 	WebDriver driver = null;
-	String timestamp;
 	
 	@Before
 	public void init() {
@@ -32,23 +31,26 @@ public class TestAddCards {
 	
 	@Test
     public void testaddCard() throws Exception {
-        timestamp = TestAddCardsUI.testAddCard(driver);
-        System.out.println(timestamp);
+        driver.get("http://localhost:8080/kkm/private/addCard.xhtml");
+        Thread.sleep(3000);
+        WebElement topic = driver.findElement(By.id("j_idt26:addCardForm:topic"));
+        WebElement front = driver.findElement(By.id("j_idt26:addCardForm:front"));
+        WebElement back = driver.findElement(By.id("j_idt26:addCardForm:back"));
+        WebElement send = driver.findElement(By.name("j_idt26:addCardForm:j_idt36"));
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    	Date date = new Date();
+    	String newTimestamp = dateFormat.format(date);
+        topic.sendKeys("automatedTest");
+        front.sendKeys(newTimestamp);
+        back.sendKeys("timestamp");
+        Thread.sleep(3000);
+        send.click();
+        Thread.sleep(3000);
     }
-	
-	/*@Test
-    public void testFindAddedCard() throws Exception {
-        String selectedTimestamp = TestAddCardsUI.testFindAddedCard(driver);
-        System.out.println(selectedTimestamp);
-        //System.out.println("created timestamp: "+timestamp +" timestamp in db: "+selectedTimestamp);
-        //assertTrue(timestamp.equals(lastElementInDB));
-    }*/
 	
 	@After
 	public void aftertest() {
 	 driver.quit();
-	 /*List <Card > list = new CardEJB().getAll();
-     Card c = list.get(list.size()-1);
-     System.out.println(c.getFront());*/
 	}
 }

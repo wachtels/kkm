@@ -25,29 +25,13 @@ public class TestLearnCards {
 	
 	@Test
     public void testFlipCardAndNextCard() throws Exception {
-        driver.get("http://localhost:8080/kkm/learnCard.xhtml");
-        Thread.sleep(3000);
+		TestLearnCardsUI.testFlipCardAndNextCard(driver);
+        String oldCardBack = TestLearnCardsUI.getOldCard(driver);
+        String newCardBack = TestLearnCardsUI.getNextCard(driver);
         
-        Actions action = new Actions(driver);
-		WebElement we = driver.findElement(By.id("learnCardForm:j_idt37"));
-		Thread.sleep(3000);
-		
-		action.moveToElement(we).build().perform();
-		String oldCardBack = we.getText();
-        Thread.sleep(3000);
-        
-        driver.findElement(By.name("learnCardForm:j_idt39:j_idt40")).click();
-        Thread.sleep(3000);
-        
-        WebElement we2 = driver.findElement(By.id("learnCardForm:j_idt37"));
-        String newCardBack = we2.getText();
-        
-        System.out.println("Back 1: "+newCardBack+"\nBack 2: "+oldCardBack);
+        System.out.println("Back 1: "+newCardBack);
+        System.out.println("Back 2: "+oldCardBack);
         assertTrue(!newCardBack.equals(oldCardBack));
-        
-        //assertTrue((driver.findElement(By.id("learnCardForm:j_idt37")).isDisplayed()));
-        
-        Thread.sleep(3000);
     }
 	
 	@After

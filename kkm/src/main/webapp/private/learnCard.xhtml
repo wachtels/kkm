@@ -25,20 +25,20 @@
 				<h:commandButton value="Search for Topic" action="#{cardController.getCardsFromTopic()}" />
 			</p:panel>
 			<p:panel header="Rate Card" style="width: 360px;">
-			<p:outputPanel style="display:block;" class="flip-container" onclick="this.classList.toggle('hover');">
+			<p:outputPanel id="flip-container" style="display:block;" class="flip-container" onclick="this.classList.toggle('hover');">
 				<p:outputPanel style="display:block" class="flipper">
 					<p:outputPanel style="display:block" class="front">
-						<div class="centered"><h:outputText value="#{cardController.currentCard.front}" /></div>
+						<div class="centered"><h:outputText id="card-front" value="#{cardController.currentCard.front}" /></div>
 					</p:outputPanel>
 					<p:outputPanel style="display:block" class="back">
-						<div class="centered"><h:outputText value="#{cardController.currentCard.back}" /></div>
+						<div class="centered"><h:outputText id="card-back" value="#{cardController.currentCard.back}" /></div>
 					</p:outputPanel>
 				</p:outputPanel>
 			</p:outputPanel>
 			<h:form>
-			    <h:commandButton value="easy" action="#{cardController.getNextCard()}" />
-			    <h:commandButton value="medium" action="#{cardController.getNextCard()}" />
-			    <h:commandButton value="hard" action="#{cardController.getNextCard()}" />
+			    <h:commandButton value="easy" id="button-easy" action="#{cardController.getNextCard()}" />
+			    <h:commandButton value="medium" id="button-medium" action="#{cardController.getNextCard()}" />
+			    <h:commandButton value="hard" id="button-hard" action="#{cardController.getNextCard()}" />
 			</h:form>
 			</p:panel>
 		</h:form>
